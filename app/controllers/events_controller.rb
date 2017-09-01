@@ -23,13 +23,15 @@ class EventsController < ApplicationController
 
   def upcoming
       @events=Event.order(:event_date)
-      @event=Event.where('event_date>=?', Date.today).first
+      @eventcheck=Event.where('event_date>=?', Date.today).first
 
       @event_attendee=EventAttendee.new
-      if @event!=nil
-        @e_attendees=EventAttendee.where(event_id: @event.id)
+      if @eventcheck!=nil
+        @e_attendees=EventAttendee.where(event_id: @eventcheck.id)
       end
       @attendees=Attendee.all
+      @attendees=@attendees.sort_by {|obj| obj.name}
+      @used_attendees=Attendee.all
   end
   # POST /events
   # POST /events.json

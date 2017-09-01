@@ -8,34 +8,50 @@
 	<%end%>
 <%end%>
 <%end%>
+<%ary=ary.uniq%>
+<%ary=ary.sort.reverse%>
 <%count=ary.count%>
 <section id="rsvp">
-		<span class="ubuntu">FOOTY THURSDAY</span>
-		<div class="container-fluid">
+<div class="container-fluid">
+		<div class="row">
+			<div class="col-xs-12" style="padding:0px;margin:0px;">
+			<span class="ubuntu">FOOTY THURSDAY</span>
+			</div>
+			
+		</div>
+		</div>
+		<div class="container-fluid cf1">
 			<div class="row">
 				<div class="rsvpheader col-xs-3">
 					<center>RSVP</center>
 				</div>
-
+				<%= link_to new_event_path do%>
+				<div class="opensans col-xs-6 col-xs-offset-3" style="padding-right:2px;">
+					<span style=""><%= link_to 'Treasurer', new_event_path,:style=>"float: right;color:#ffffff",:class=>"opensans" %><span style="float: right;"> &nbsp|&nbsp </span><%= link_to 'Admin', new_event_path,:style=>"float: right;color:#ffffff",:class=>"opensans" %></span>
+				</div>
+				<%end%>
 			</div>
 			<div class="row">
 				<div class="rsvpcont col-md-12">
-				<%if @event!=nil%>
-					<span class="opensans"><b>When:</b> <%=@event.start_time.strftime("%l:%M%p")%> - <%=@event.end_time.strftime("%l:%M%p")%>, <%=@event.event_date.strftime("%b %d, %Y")%></span> <br>
-					<span class="opensans"><b>Where:</b> <%=@event.location%></span>
+				<%if @eventcheck!=nil%>
+					<span class="opensans"><b>When:</b> <%=@eventcheck.start_time.strftime("%l:%M%p")%> - <%=@eventcheck.end_time.strftime("%l:%M%p")%>, <%=@eventcheck.event_date.strftime("%b %d, %Y")%></span> <br>
+					<span class="opensans"><b>Where:</b> <%=@eventcheck.location%></span>
 
 
-<%= simple_form_for @event_attendee do |f| %>
-<div class="row" style="margin-top:2vh;">
-<div class="col-xs-8">
-  <%= f.association :attendee, label: false, prompt: 'Select your name', :input_html => { :class => "assoc" } %>
-  </div>
-  <div class="col-xs-4">
-  <%= f.button :submit, "RSVP", :class => "rsvpsub" %>
-  </div>
-  </div>
 
-  <div class="row">
+				<%= simple_form_for @event_attendee do |f| %>
+				  <div class="row" style="margin-top:2vh;">
+					<div class="col-xs-8">
+					  <%= f.association :attendee, collection:@attendees, label: false, prompt: 'Select your name', :input_html => { :class => "assoc"},:disabled =>@used_attendees  %>
+					  </div>
+					  <div class="col-xs-4">
+					  <%= f.button :submit, "RSVP", :class => "rsvpsub" %>
+					  </div>
+				  </div>
+				  <div class="row" style="margin-top:1vh;padding-left: 2vh;">
+					<span class="opensans">New to Footy Thursday? <%= link_to 'Register here', registration_path(@eventcheck.id),:style=>"text-decoration:underline; color:#ffffff",:class=>"opensans" %></span>
+					</div>
+				  <div class="row">
 					<div class="col-xs-4 numatt">
 					<center>
 					<span class="numattendees">
@@ -47,12 +63,12 @@
 						<%=ary.pop%><br>
 					<%end%>
 					</div>
-				</div>
-<% end %>
+					</div>
+				<% end %>
 
 
 				<%else%>
-				<span class="opensans">No details for upcoming session yet</span>
+				<span class="opensans">No details for the upcoming session yet.</span>
 				<!--if no event-->
 				<%end%>
 				
@@ -65,9 +81,11 @@
 
 			</div>
 			<div class="row">
-				<div class="rsvpcont col-md-12">
-				<span class="opensans"><b>When:</b> 9:30PM-12:00AM, Aug 31, 2017</span> <br>
-				<span class="opensans"><b>Where:</b> BSM Playing Field Taguig</span>
+				<div class="rsvpcont1 col-md-12">
+				<span class="opensans"><b>Most Attended:</b> </span> <br>
+				<span class="opensans"><b>Longest Streak:</b> </span><br>
+				<span class="opensans"><b>Top Scorer:</b> </span>
+
 
 				</div>
 			</div>			

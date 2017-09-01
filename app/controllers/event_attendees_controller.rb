@@ -20,6 +20,11 @@ class EventAttendeesController < ApplicationController
   # GET /event_attendees/1/edit
   def edit
   end
+  def registration
+    @event=Event.find(params[:id])
+    @attendee=Attendee.new
+    @event_attendee = EventAttendee.new
+  end  
 
   # POST /event_attendees
   # POST /event_attendees.json
@@ -29,7 +34,7 @@ class EventAttendeesController < ApplicationController
     @event_attendee.event_id=@event.id
     respond_to do |format|
       if @event_attendee.save
-        format.html { redirect_to @event_attendee, notice: 'Event attendee was successfully created.' }
+        format.html { redirect_to root_path, notice: 'Event attendee was successfully created.' }
         format.json { render :show, status: :created, location: @event_attendee }
       else
         format.html { render :new }

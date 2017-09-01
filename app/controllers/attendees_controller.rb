@@ -25,10 +25,14 @@ class AttendeesController < ApplicationController
   # POST /attendees.json
   def create
     @attendee = Attendee.new(attendee_params)
-
+    @event=Event.where('event_date>=?', Date.today).first
     respond_to do |format|
       if @attendee.save
-        format.html { redirect_to @attendee, notice: 'Attendee was successfully created.' }
+        @prev_event_attendee=EventAttendee.where(event_id: @event.id, attendee_id: @attendee.id)
+        if @prev_event_attendee!=nil
+          EventAttendee.create!(event_id: @event.id, attendee_id: @attendee.id)
+        end
+        format.html { redirect_to root_path, notice: 'Attendee was successfully created.' }
         format.json { render :show, status: :created, location: @attendee }
       else
         format.html { render :new }

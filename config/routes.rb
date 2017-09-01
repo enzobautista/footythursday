@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :event_attendees
   resources :attendees
   root 'events#upcoming'
+  get '/registration/:id/',to: 'event_attendees#registration', as: 'registration'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

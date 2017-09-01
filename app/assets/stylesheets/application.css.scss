@@ -1,0 +1,99 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+body {
+  min-height: 100vh;
+  overflow-x:hidden;
+
+  background: #004c96; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(left top,#004c96, #00b5e0); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(bottom right,#004c96, #00b5e0); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(bottom right,#004c96, #00b5e0); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to bottom right,#004c96, #00b5e0); /* Standard syntax */
+}
+.ubuntu{
+	font-family: 'Ubuntu', Sans-Serif;
+	font-size: 48px;
+	color:#ffffff;
+	line-height: 1;
+}
+.opensans{
+	font-family: 'Open Sans', Sans-Serif;
+	font-size: 15px;
+	color: #ffffff;
+}
+#rsvp{
+	padding-top: 1.5vh;
+	padding-bottom: 3vh;
+	padding-left: 2vh;
+	padding-right: 2vh;
+}
+.rsvpcont{
+	min-height: 30vh;
+	border: 2px #ffffff solid;
+	padding: 1vh;
+}
+.rsvpheader{
+	min-height: 4vh;
+	color:#004c96;
+	background-color: #ffffff;
+	font-family: 'Open Sans', Sans-Serif;
+	font-size: 20px;
+}
+.container-fluid{
+	padding-top: 4vh;
+}
+.leaderboard{
+	margin-top: 4vh;
+}
+.assoc{
+	height: 5vh;
+	border-color: transparent;
+	width:110%;
+	display: inline-block;
+	background-color: #ffffff;
+	font-family: 'Open Sans', Sans-Serif;
+	font-size: 15px;
+	padding-left: 1vh;
+}
+.rsvpsub{
+	color:#ffffff;
+	height:5vh;
+	font-family: 'Open Sans', Sans-Serif;
+	font-size: 15px;
+	border: 2px solid #ffffff;
+	display: inline-block;
+	background-color: transparent;
+	border-radius: 0px;
+	font-weight: 600;
+	padding-top: 0.6vh;
+}
+.numatt{
+	color:#ffffff;
+	font-family: 'Open Sans', Sans-Serif;
+	font-size: 15px;
+	padding-top: 2vh;
+}
+.numattendees{
+	font-family: 'Open Sans', Sans-Serif;
+	font-size: 48px;
+	color:#ffffff;
+	line-height: 0.7;
+}
+

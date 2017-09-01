@@ -1,0 +1,73 @@
+<%ary = []%>
+<%if @e_attendees!=nil%>
+<% @e_attendees.each do |ea| %>
+	<%@attendees.each do |a| %>
+		<%if ea.attendee_id==a.id%>
+			<%ary<<a.name%>
+		<%end%>
+	<%end%>
+<%end%>
+<%end%>
+<%count=ary.count%>
+<section id="rsvp">
+		<span class="ubuntu">FOOTY THURSDAY</span>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="rsvpheader col-xs-3">
+					<center>RSVP</center>
+				</div>
+
+			</div>
+			<div class="row">
+				<div class="rsvpcont col-md-12">
+				<%if @event!=nil%>
+					<span class="opensans"><b>When:</b> <%=@event.start_time.strftime("%l:%M%p")%> - <%=@event.end_time.strftime("%l:%M%p")%>, <%=@event.event_date.strftime("%b %d, %Y")%></span> <br>
+					<span class="opensans"><b>Where:</b> <%=@event.location%></span>
+
+
+<%= simple_form_for @event_attendee do |f| %>
+<div class="row" style="margin-top:2vh;">
+<div class="col-xs-8">
+  <%= f.association :attendee, label: false, prompt: 'Select your name', :input_html => { :class => "assoc" } %>
+  </div>
+  <div class="col-xs-4">
+  <%= f.button :submit, "RSVP", :class => "rsvpsub" %>
+  </div>
+  </div>
+<% end %>
+
+
+				<%else%>
+
+				<!--if no event-->
+				<%end%>
+				<div class="row">
+					<div class="col-xs-4 numatt">
+					<center>
+					<span class="numattendees">
+				<%=count%></span> <br>attending</center>
+					</div>
+					<div class="col-xs-6 numatt">
+					<b>RSVP List:</b><br>
+					<%until ary.empty?%>
+						<%=ary.pop%><br>
+					<%end%>
+					</div>
+				</div>
+				</div>
+			</div>
+			<div class="row leaderboard">
+				<div class="rsvpheader col-xs-6">
+					<center>Leaderboard</center>
+				</div>
+
+			</div>
+			<div class="row">
+				<div class="rsvpcont col-md-12">
+				<span class="opensans"><b>When:</b> 9:30PM-12:00AM, Aug 31, 2017</span> <br>
+				<span class="opensans"><b>Where:</b> BSM Playing Field Taguig</span>
+
+				</div>
+			</div>			
+		</div>
+	</section>

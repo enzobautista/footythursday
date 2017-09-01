@@ -26,7 +26,9 @@ class EventsController < ApplicationController
       @event=Event.where('event_date>=?', Date.today).first
 
       @event_attendee=EventAttendee.new
-      @e_attendees=EventAttendee.where(event_id: @event.id)
+      if @event!=nil
+        @e_attendees=EventAttendee.where(event_id: @event.id)
+      end
       @attendees=Attendee.all
   end
   # POST /events

@@ -34,14 +34,8 @@
   <%= f.button :submit, "RSVP", :class => "rsvpsub" %>
   </div>
   </div>
-<% end %>
 
-
-				<%else%>
-
-				<!--if no event-->
-				<%end%>
-				<div class="row">
+  <div class="row">
 					<div class="col-xs-4 numatt">
 					<center>
 					<span class="numattendees">
@@ -54,6 +48,14 @@
 					<%end%>
 					</div>
 				</div>
+<% end %>
+
+
+				<%else%>
+				<span class="opensans">No details for upcoming session yet</span>
+				<!--if no event-->
+				<%end%>
+				
 				</div>
 			</div>
 			<div class="row leaderboard">

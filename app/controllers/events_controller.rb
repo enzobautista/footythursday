@@ -23,7 +23,7 @@ class EventsController < ApplicationController
 
   def upcoming
       @events=Event.order(:event_date)
-      @eventcheck=Event.where('event_date>=?', Date.today).first
+      @eventcheck=Event.where('event_date>=?', Date.today).order("event_date ASC").first
 
       @event_attendee=EventAttendee.new
       if @eventcheck!=nil
@@ -40,7 +40,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
+        format.html { redirect_to events_path, notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @event }
       else
         format.html { render :new }

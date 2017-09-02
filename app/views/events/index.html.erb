@@ -1,33 +1,47 @@
-<p id="notice"><%= notice %></p>
+<section id="rsvp">
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12" style="padding:0px;margin:0px;">
+      <%=link_to root_path do%><span class="ubuntu">FOOTY THURSDAY</span><%end%>
+      </div>
+      
+      <h1 style="color:#ffffff;display:inline-block;">All Games</h1> <%= link_to '+', new_event_path ,:style=>"float:right;color:#ffffff;font-size:40;margin-top:1.8vh;", :class=>"ubuntu"%><br><br>
+      <div data-responsive-table-toolbar="tech-companies-1">
+      </div>
+      <div class="table-responsive" data-pattern="priority-columns">
+          <table cellspacing="0" id="tech-companies-1" class="table table-small-font table-bordered " style="background-color:white;">
+              <thead>
 
-<h1>Listing Events</h1>
+                  <tr>
+                      <th>Location</th>
+                      <th data-priority="1">Event date</th>
+                      <th data-priority="2">Start time</th>
+                      <th data-priority="2">End time</th>
+                      <th data-priority="1" colspan="2">Actions</th>
+                  </tr>
+              </thead>
+              <tbody>
+          <% @events.each do |event| %>
+                <tr>
+                  <td><%= event.location %></td>
+                  <td><%= event.event_date.strftime("%b %d, %Y") %></td>
+                  <td><%= event.start_time.strftime("%l:%M%p") %></td>
+                  <td><%= event.end_time.strftime("%l:%M%p") %></td>
+                  <td><%= link_to 'Edit', edit_event_path(event) %></td>
+                  <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                </tr>
+              <% end %>
+            
+              </tbody>
+          </table>
+      </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Location</th>
-      <th>Event date</th>
-      <th>Start time</th>
-      <th>End time</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+    </div>
 
-  <tbody>
-    <% @events.each do |event| %>
-      <tr>
-        <td><%= event.location %></td>
-        <td><%= event.event_date %></td>
-        <td><%= event.start_time %></td>
-        <td><%= event.end_time %></td>
-        <td><%= link_to 'Show', event %></td>
-        <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+</div>
+<%=link_to "Back to Home", root_path, :class=>"opensans", :style=>"#ffffff!important;text-decoration:underline;" %>
+</section>
+<script src="/assets/table.js"></script>
+<script src="/assets/table.scss"></script>
 
-<br>
 
-<%= link_to 'New Event', new_event_path %>

@@ -27,7 +27,7 @@
 				</div>
 				<%= link_to new_event_path do%>
 				<div class="opensans col-xs-6 col-xs-offset-3" style="padding-right:2px;">
-					<span style=""><%= link_to 'Treasurer', new_event_path,:style=>"float: right;color:#ffffff",:class=>"opensans" %><span style="float: right;"> &nbsp|&nbsp </span><%= link_to 'Admin', new_event_path,:style=>"float: right;color:#ffffff",:class=>"opensans" %></span>
+					<span style=""><%= link_to 'Treasurer', event_attendees_path,:style=>"float: right;color:#ffffff",:class=>"opensans" %><span style="float: right;"> &nbsp|&nbsp </span><%= link_to 'Admin', events_path,:style=>"float: right;color:#ffffff",:class=>"opensans" %></span>
 				</div>
 				<%end%>
 			</div>

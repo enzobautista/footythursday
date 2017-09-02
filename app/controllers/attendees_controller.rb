@@ -25,7 +25,7 @@ class AttendeesController < ApplicationController
   # POST /attendees.json
   def create
     @attendee = Attendee.new(attendee_params)
-    @event=Event.where('event_date>=?', Date.today).first
+    @event=Event.where('event_date>=?', Date.today).order("event_date ASC").first
     respond_to do |format|
       if @attendee.save
         @prev_event_attendee=EventAttendee.where(event_id: @event.id, attendee_id: @attendee.id)

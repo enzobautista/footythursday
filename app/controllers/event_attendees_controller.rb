@@ -4,7 +4,10 @@ class EventAttendeesController < ApplicationController
   # GET /event_attendees
   # GET /event_attendees.json
   def index
-    @event_attendees = EventAttendee.all
+    @event_attendees = EventAttendee.where(paid: false)
+    @event_attendees1 = EventAttendee.where(paid: true)
+    @events=Event.all
+    @attendees=Attendee.all
   end
 
   # GET /event_attendees/1
@@ -30,8 +33,9 @@ class EventAttendeesController < ApplicationController
   # POST /event_attendees.json
   def create
     @event_attendee = EventAttendee.new(event_attendee_params)
-    @event=Event.where('event_date>=?', Date.today).first
+    @event=Event.where('event_date>=?', Date.today).order("event_date ASC").first
     @event_attendee.event_id=@event.id
+    @event_attendee.paid=false
     respond_to do |format|
       if @event_attendee.save
         format.html { redirect_to root_path, notice: 'Event attendee was successfully created.' }
@@ -56,6 +60,11 @@ class EventAttendeesController < ApplicationController
       end
     end
   end
+  def pay
+    @event_attendee=EventAttendee.find(params[:id])
+    @event_attendee.update(:paid=>true)
+    redirect_to event_attendees_path
+  end
 
   # DELETE /event_attendees/1
   # DELETE /event_attendees/1.json
@@ -75,6 +84,6 @@ class EventAttendeesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_attendee_params
-      params.require(:event_attendee).permit(:attendee_id, :event_id)
+      params.require(:event_attendee).permit(:attendee_id, :event_id, :paid)
     end
 end

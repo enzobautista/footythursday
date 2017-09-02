@@ -59,8 +59,15 @@
 					</div>
 					<div class="col-xs-6 numatt">
 					<b>RSVP List:</b><br>
-					<%until ary.empty?%>
-						<%=ary.pop%><br>
+					<%if @e_attendees!=nil%>
+					<%@attendees.each do |a| %>
+					<% @e_attendees.each do |ea| %>
+						
+							<%if ea.attendee_id==a.id%>
+								<%=a.name%> - <%= link_to 'X', ea, method: :delete, data: { confirm: 'Are you sure you want to cancel?' },:style=>"color:#ffffff;" %><br>
+							<%end%>
+						<%end%>
+					<%end%>
 					<%end%>
 					</div>
 					</div>

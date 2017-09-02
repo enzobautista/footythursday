@@ -4,7 +4,7 @@ class EventAttendeesController < ApplicationController
   # GET /event_attendees
   # GET /event_attendees.json
   def index
-    @event_attendees = EventAttendee.where(paid: false)
+    @event_attendees = EventAttendee.where.not(paid: true)
     @event_attendees1 = EventAttendee.where(paid: true)
     @events=Event.all
     @attendees=Attendee.all
